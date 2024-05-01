@@ -88,7 +88,7 @@ public class Home extends AppCompatActivity {
                     SharedPreferences.Editor editor = sPref.edit();
                     editor.putBoolean("key_isLogin", true);
                     editor.apply();
-                    startActivity(new Intent(Home.this, MainActivity3.class));
+                    startActivity(new Intent(Home.this, Re_Task.class));
                     finish();
                 }
 
