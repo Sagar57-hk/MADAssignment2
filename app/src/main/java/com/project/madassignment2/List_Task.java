@@ -8,9 +8,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,8 +44,28 @@ public class List_Task extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+//        Task task1 = null;
+//        if (Myapplication.tasks != null) {
+//            ArrayList<String> new_tasks = new ArrayList<>();
+//            for (Task task : Myapplication.tasks) {
+//                new_tasks.add(task.getTask_title());
+//            }
+//
+//            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, new_tasks);
+//            setListAdapter(adapter);
+//        } else {
+////            String[] names = getResources().getStringArray(R.array.pieces);
+//            String[] names;
+//            names = new String[6];
+//
+//            for(int i=0;i<3;i++)
+//            {
+//                names[i]=task1.getTask_title();
+//            }
+
         String[] names = getResources().getStringArray(R.array.pieces);
-        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,names));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_dropdown_item_1line, names);
+            setListAdapter(adapter);
     }
 
     @Override
@@ -50,5 +74,19 @@ public class List_Task extends ListFragment {
 
         myActivity.onItemClicked(position);
     }
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//
+//    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(android.R.layout.simple_list_item_1, container, false);
+    }
+
+
 
 }

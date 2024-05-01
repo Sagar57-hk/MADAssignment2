@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,10 +34,15 @@ TextView textView1,textView2;
   ;//new LinearLayoutManager(fragment_re_task_list);
 RecyclerView.Adapter myAdapter;
 View view;
+ImageView back;
 
-ArrayList<Task> tasks;
+Spinner spinner;
+
+    public static ArrayList<Task>tasks;
 
 Button newBtn;
+
+
 
     public Re_Task_list() {
         // Required empty public constructor
@@ -66,7 +74,17 @@ Button newBtn;
             Intent intent = new Intent(getContext(), NewTask_Input.class);
                     getContext().startActivity(intent);
         });
+
+
+
+        String[] items = new String[]{"Priority","High", "Low"};
+//create an adapter to describe how the items are displayed, adapters are used in several places in android.
+//There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, items);
+//set the spinners adapter to the previously created one.
+        spinner.setAdapter(adapter);
     }
+
 
 
     public void init()
@@ -75,11 +93,12 @@ Button newBtn;
 
         tasks = new ArrayList<>();
         newBtn = view.findViewById(R.id.newBtn);
+        back=view.findViewById(R.id.back);
         recyclerView = view.findViewById(R.id.list_recycle);
         recyclerView.setHasFixedSize(true);
+        spinner = view.findViewById(R.id.spinner1);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-       Task task= new Task("Body",
-               "Description");
+       Task task= new Task("Body", "Description","High","21/02/2024");
        tasks.add(task);
         myAdapter = new TaskAdapter(getContext(),tasks);
         recyclerView.setAdapter(myAdapter);

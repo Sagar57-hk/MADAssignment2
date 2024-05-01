@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+
 public class Home extends AppCompatActivity {
+    private  static ArrayList<Task>tasks;
     FragmentManager manager;
     Fragment loginF, signupF;
     View loginV, signupV;

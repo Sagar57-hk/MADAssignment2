@@ -15,12 +15,11 @@ public class Task {
         this.task_description = task_description;
     }
 
-    public Task(String task_title,String task_description,String task_priority, String task_due_date,String task_add_notes)
+    public Task(String task_title,String task_description,String task_priority, String task_due_date)
     {
         this.task_title = task_title;
         this.task_description = task_description;
         this.task_due_date = task_due_date;
-        this.task_add_notes = task_add_notes;
         this.task_priority = task_priority;
     }
 

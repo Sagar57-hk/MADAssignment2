@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView imageView;
+        imageView=findViewById(R.id.logo);
 
         sharedPreferences = getSharedPreferences("TaskM",MODE_PRIVATE);
-
+        Animation logo_animation = AnimationUtils.loadAnimation(this, R.anim.logo_anim);
+        imageView.setAnimation(logo_animation);
 
         new Handler().postDelayed(new Runnable() {
             @Override
