@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity3 extends AppCompatActivity {
+public class MainActivity3 extends AppCompatActivity implements List_Task.ItemSelected {
 
     LinearLayout portrait, landscape;
     FragmentManager manager;
@@ -19,8 +19,10 @@ public class MainActivity3 extends AppCompatActivity {
 
     TextView tvDescription;
 
-    ArrayList<String> phoneNumbers;
+    String[] phoneNumbers;
     View viewOfDetailFrag;
+
+    ArrayList<String> task = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,24 +31,50 @@ public class MainActivity3 extends AppCompatActivity {
 
         tvDescription =  viewOfDetailFrag.findViewById(R.id.tvDesc);
 
-        phoneNumbers = new ArrayList<>();
-        phoneNumbers.add("0323312");
-        phoneNumbers.add("0868576");
-        phoneNumbers.add("0912121");
-        phoneNumbers.add("0585858");
-        phoneNumbers.add("0232323");
+        phoneNumbers = getResources().getStringArray(R.array.descriptions);
 
-        tvDescription.setText(phoneNumbers.get(0));
+        tvDescription.setText(phoneNumbers[0]);
+
+
+        if(portrait != null)
+        {
+            manager.beginTransaction()
+                    .show(ftask)
+                    .hide(fDetail)
+                    .commit();
+        }
+        else
+        {
+            manager.beginTransaction()
+                    .show(ftask)
+                    .show(fDetail)
+                    .commit();
+        }
     }
 
     private void init()
     {
             portrait = findViewById(R.id.portrait_mode);
-            //landscape = findViewById(R.id.landscape_mode);
+            landscape = findViewById(R.id.landscape_mode);
             manager = getSupportFragmentManager();
             ftask = manager.findFragmentById(R.id.ftask);
             fDetail = manager.findFragmentById(R.id.fDetail);
             assert fDetail != null;
             viewOfDetailFrag = fDetail.requireView();
+    }
+
+
+    @Override
+    public void onItemClicked(int index) {
+        tvDescription.setText(phoneNumbers[index]);
+
+        if(portrait != null)
+        {
+            manager.beginTransaction()
+                    .hide(ftask)
+                    .show(fDetail)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }

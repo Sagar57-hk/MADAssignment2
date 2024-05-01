@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if(sharedPreferences.getBoolean("isLogin",false))
                 {
-                    Intent intent = new Intent(MainActivity.this, MainActivity3.class);
+                    Intent intent = new Intent(MainActivity.this, Home.class);
                     startActivity(intent);
                     finish();
                 }
                 else {
-                    Intent intent = new Intent(MainActivity.this, Home.class);
+                    Intent intent = new Intent(MainActivity.this, Re_Task.class);
                     startActivity(intent);
                     finish();
                 }
